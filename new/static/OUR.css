@@ -7,7 +7,7 @@
 }
 
 @media (min-width: 768px) {
-.bd-placeholder-img-lg {
+.bd-placeholder-img-lg { 50
   font-size: 3.5rem;
 }
 }
@@ -19,8 +19,10 @@
 }
 
 .bg-image {
-  max-width: 994px;
-  height: 994px;
+  margin: 0 auto;
+  position: static !important;
+  display: block;
+  min-width: 0 !important;
   opacity: .5;
 }
 
@@ -28,3 +30,17 @@
   background-color: #000;
 }
 
+ .noCanvas{
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000;
+ }
