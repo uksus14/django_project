@@ -15,4 +15,16 @@
 .image {
   width: 140px;
   height: 140px;
+  border-radius: 50%;
 }
+
+.bg-image {
+  max-width: 994px;
+  height: 994px;
+  opacity: .5;
+}
+
+.carousel-item {
+  background-color: #000;
+}
+
