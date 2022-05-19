@@ -1,2 +1,6 @@
+pip install:
 django
 jinja2
+
+Sample:
+https://getbootstrap.com/docs/5.1/examples/carousel/
