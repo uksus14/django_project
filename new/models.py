@@ -1,12 +1,10 @@
-from msvcrt import open_osfhandle
 from django.db import models
 from django import forms
-from project_settings import *
 
-class Tutor(): pass
-class Club(): pass
-class Faculty(): pass
-class Course(): pass
+class Tutor(models.Model): pass
+class Club(models.Model): pass
+class Faculty(models.Model): pass
+class Course(models.Model): pass
 
 class User(models.Model):
     student_id = models.IntegerField(primary_key=True)
@@ -18,9 +16,9 @@ class User(models.Model):
     first_name = models.CharField(max_length=2**10)
     second_name = models.CharField(max_length=2**10)
 
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL)
-    tutors = models.ManyToManyField(Tutor)
-    clubs = models.ManyToManyField(Club, primary_key=True)
+    course = models.ForeignKey(Course, on_delete=models.DO_NOTHING)
+    # tutors = models.ManyToManyField(Tutor)
+    clubs = models.ManyToManyField(Club)
 
     def get_year(self):
         from datetime import datetime
@@ -47,9 +45,9 @@ class User(models.Model):
         if self.is_superuser:
             return f"{self.get_full_name()} (superuser)"
         elif self.is_tutor:
-            is_tutor = "tutor"
+            is_tutor = "Является тьютором"
         else:
-            is_tutor = "not tutor"
+            is_tutor = "Не является тьютором"
         if self.get_tutors():
             tutors = "тьюторы: " + ", ".join(map(str, self.get_tutors()))
         else: tutors = "Тьюторов нет"
@@ -75,8 +73,8 @@ class Course():
 
 
 class Club():
-    students = models.ManyToManyField(User)
     club_name = models.CharField(max_length=32, primary_key=True)
+    students = models.ManyToManyField(User)
     club_leader = models.ForeignKey(User, on_delete=models.SET_NULL)
     club_description = models.CharField(max_length=2**10)
     club_logo = models.ImageField(upload_to='club_logos')
@@ -88,17 +86,18 @@ class Club():
         return f"{self.club_name}-лидер – {self.club_leader.get_full_name()}\n({self.club_description})"
 
 class Faculty():
+    FACULTIES = ["DHT", "SEST", "IBHT", "EHI", "ECOL", "DMDT", "SFHT"]
     students = models.ManyToManyField(User)
-    faculty_name = models.CharField(max_length=8)
+    faculty_name = forms.ChoiceField(choices = FACULTIES)
 
     def __str__(self):
         return self.faculty_name
 
 class Tutor(models.Model):
     TUTOR_SUBJECTS = ("Математика", "Физика", "Химия", "Информатика", "Английский язык")
-    student = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     subject = forms.ChoiceField(choices=TUTOR_SUBJECTS)
-    tuties = models.ManyToManyField(User, primary_key=True, on_delete=models.DO_NOTHING)
+    student = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    # tuties = models.ManyToManyField(User)
 
     def __str__(self):
         return f"{self.student.get_full_name()}, преподаёт {self.subject}"
