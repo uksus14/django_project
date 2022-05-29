@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import User, Tutor, Club, Faculty, Course
+from .models import User, Tutor, Club, Course
 
 admin.site.register(User)
 admin.site.register(Tutor)
-# admin.site.register(Course)
-# admin.site.register(Faculty)
-# admin.site.register(Club)
+admin.site.register(Club)
+admin.site.register(Course)
 
 # Register your models here.
+# eldiyar_one_love
+# very_safe_password
