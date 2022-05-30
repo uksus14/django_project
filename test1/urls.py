@@ -17,9 +17,10 @@ from hashlib import new
 from django.contrib import admin
 from django.urls import path
 from new import views
+from new.views import Register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.homepage, name="home sweet home"),
-    path('link/', views.link, name="link"),
+    path('link/', Register, name="link"),
 ]

@@ -1,0 +1,11 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% block head %}
+{{block.super}}
+<link href="styles.css" rel="stylesheet" media="screen">
+{% endblock %}
+
+{%block content%}
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.bbd13993eb53d3a11ac08f5e8cf9d6a4.html?origin=https%3A%2F%2Flab.hakim.se" title="Twitter settings iframe" style="display: none;"></iframe>
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script><script src="{% static 'blob.min.js' %}"></script>
+{%endblock%}

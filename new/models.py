@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 
 class Course(models.Model):
     FACULTIES = (
@@ -23,10 +22,10 @@ class Course(models.Model):
 
 
 class User(models.Model):
-    student_id = models.IntegerField(primary_key=True)
-    email = models.EmailField(max_length=254, unique=True)
+    student_id = models.IntegerField(primary_key = True)
+    email = models.EmailField(max_length=254, unique=True,blank=True,null=True)
     password = models.CharField(max_length=16)
-    is_superuser = models.IntegerField()
+    is_superuser = models.IntegerField(default=0)
 
     first_name = models.CharField(max_length=2**10, default="")
     second_name = models.CharField(max_length=2**10, default="")

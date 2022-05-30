@@ -1,0 +1,10 @@
+{% extends 'blank.html' %}
+
+{% block content %}
+<h1>log up</h1>
+<form action="/" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">log up</button>
+</form>
+{% endblock %}
