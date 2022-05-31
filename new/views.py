@@ -1,11 +1,12 @@
-from .models import User
+from .models import User, Club
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from .forms import UserForm#, TutorForm, ClubForm, CourseForm
 from django.views.generic import ListView, FormView, DetailView
 
 
 def homepage(request):
-    return render(request, "home.html")
+    Clubs = Club.objects.all()
+    return render(request, "home.html", {"Clubs": Clubs})
 
 def link(request):
     return render(request, "link.html")

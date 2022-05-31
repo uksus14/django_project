@@ -75,9 +75,17 @@ class Club(models.Model):
     club_name = models.CharField(max_length=32)
     club_leader = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="club_leader")
     club_description = models.CharField(max_length=2**10)
-    club_logo = models.ImageField(upload_to='club_logos')
+    club_logo = models.ImageField()
     participants = models.ManyToManyField(User, related_name="clubs_participants")
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.club_logo.url
+        except:
+            url = ''
+        return url
+    
     def get_students(self):
         return self.students.all()
     
