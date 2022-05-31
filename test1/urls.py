@@ -19,6 +19,7 @@ from django.urls import path
 from new import views
 from new.views import Register
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.homepage, name="home sweet home"),

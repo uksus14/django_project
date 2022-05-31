@@ -50,7 +50,7 @@
                     <h1>Hello {{ request.user }}.</h1>
                     {% for i in Clubs %}
                     <p>{{ i.club_name }}</p>
-                    <img src="static{{ i.imageURL }}">
+                    <img class="image" src="static{{ i.imageURL }}">
                     {% endfor %}
                     <p>Some representative placeholder content for the first slide of the carousel.</p>
                     <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
